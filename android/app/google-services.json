@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "931180687809",
+    "project_id": "matchmate-2f01f",
+    "storage_bucket": "matchmate-2f01f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931180687809:android:ed8e00a87a76933931ff40",
+        "android_client_info": {
+          "package_name": "com.example.matchmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931180687809-e9pdgiu12g0pi1ku63f7goov4s7l1fhf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbFJ8RJ9vtnCPNgVQKCyEsqcdroVStE_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931180687809-e9pdgiu12g0pi1ku63f7goov4s7l1fhf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
