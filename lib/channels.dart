@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:matchmate/channels.dart';
+import 'package:matchmate/home_page.dart';
 import 'colors.dart' as colors;
 
-class Teams extends StatefulWidget {
-  const Teams({Key? key}) : super(key: key);
+class Channels extends StatefulWidget {
+  const Channels({Key? key}) : super(key: key);
 
   @override
-  State<Teams> createState() => _TeamsState();
+  State<Channels> createState() => _ChannelsState();
 }
 
-class _TeamsState extends State<Teams> {
-  final CollectionReference _teams = FirebaseFirestore.instance.collection('Teams');
+class _ChannelsState extends State<Channels> {
+  final CollectionReference _channels = FirebaseFirestore.instance.collection('channels');
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,12 @@ class _TeamsState extends State<Teams> {
       appBar: AppBar(
         title:  const Padding(
           padding: EdgeInsets.only(right: 30),
-          child: Center(child: Text('Teams')),
+          child: Center(child: Text('Channels')),
         ),
         backgroundColor: colors.AppColor.homePageIcons,
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: _teams.snapshots(),
+        stream: _channels.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
 
           if (snapshot.hasError) {
@@ -36,40 +36,40 @@ class _TeamsState extends State<Teams> {
             return const Center(child: CircularProgressIndicator());
           }
 
-          final teams = snapshot.data!.docs;
+          final channels = snapshot.data!.docs;
 
           return ListView.builder(
-            itemCount: teams.length,
+            itemCount: channels.length,
             itemBuilder: (BuildContext context, int index) {
-              final team = teams[index];
-              final id = team.id;
-              final data = team.data() as Map<String, dynamic>;
+              final channel = channels[index];
+              final id = channel.id;
+              final data = channel.data() as Map<String, dynamic>;
 
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const Channels(),
+                      builder: (context) => const HomePage(),
                     ),
                   );
                 },
                 child: Container(
-                  margin: EdgeInsets.all(8.0),
-                  padding: EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     color: colors.AppColor.homePageContainerTextBig,
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: ListTile(
-                    title: Text('ID: ${data['league_id']}, Name: ${data['team_name']}',style: const TextStyle(
+                    title: Text('ID: ${data['channel_id']}, Name: ${data['channel_name']}',style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Times New Roman',
                       fontSize: 14,
                     ),),
                     leading:  ClipOval(
                       child: Image.network(
-                        '${data['team_url']}',
+                        '${data['channel_url']}',
                         width: 200,
                         height: 220,
                       ),

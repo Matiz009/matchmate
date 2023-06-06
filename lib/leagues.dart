@@ -13,13 +13,17 @@ class Leagues extends StatefulWidget {
 }
 
 class _LeaguesState extends State<Leagues> {
+
   final CollectionReference _leagues = FirebaseFirestore.instance.collection('Leagues');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Leagues')),
+        title:  const Padding(
+          padding: EdgeInsets.only(right: 30),
+          child: Center(child: Text('Leagues')),
+        ),
         backgroundColor: colors.AppColor.homePageIcons,
       ),
       body: StreamBuilder<QuerySnapshot>(
@@ -49,7 +53,6 @@ class _LeaguesState extends State<Leagues> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const Teams(),
-
                     ),
                   );
                 },
