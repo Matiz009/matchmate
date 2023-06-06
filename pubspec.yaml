@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_messaging: ^14.6.1
   flutter_local_notifications: ^14.1.0
+  cloud_firestore: ^4.8.0
+  firebase_core: ^2.13.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ flutter:
   assets:
     - assets/football-player.png
     - assets/shoot.png
+    - assets/main.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
