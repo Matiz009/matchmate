@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:matchmate/teams.dart';
 //import 'Teams.dart';
@@ -19,13 +18,6 @@ class _LeaguesState extends State<Leagues> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:  const Padding(
-          padding: EdgeInsets.only(right: 30),
-          child: Center(child: Text('Leagues')),
-        ),
-        backgroundColor: colors.AppColor.homePageIcons,
-      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: _leagues.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -44,41 +36,59 @@ class _LeaguesState extends State<Leagues> {
             itemCount: leagues.length,
             itemBuilder: (BuildContext context, int index) {
               final league = leagues[index];
-              final id = league.id;
               final data = league.data() as Map<String, dynamic>;
+              final id=data['league_id'];
 
               return GestureDetector(
                 onTap: () {
-                  String leagueId = id;
+                  String leagueId=id;
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const Teams(),
+                      builder: (context) =>  Teams(League_id: leagueId,),
                     ),
                   );
                 },
                 child: Container(
-                  margin: EdgeInsets.all(8.0),
-                  padding: EdgeInsets.all(8.0),
+                  width: 300, // Set a fixed width value
+                  height: 100, // Set a fixed height value
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    color: colors.AppColor.homePageContainerTextBig,
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: ListTile(
-                    title: Text('ID: ${data['league_id']}, Name: ${data['league_name']}',style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Times New Roman',
-                      fontSize: 14,
-                    ),),
-                    leading:  ClipOval(
-                        child: Image.network(
-                          '${data['league_url']}',
-                          width: 200,
-                          height: 220,
-                      ),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.blueAccent.withOpacity(0.7),
+                        Colors.white60.withOpacity(0.9),
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.centerRight,
                     ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(5, 10),
+                        blurRadius: 10,
+                        color: colors.AppColor.gradientSecond.withOpacity(0.2),
+                      ),
+                    ],
                   ),
-                ),
+                  child: Row(
+                    children: [
+                      Image.network(
+                        '${data['league_url']}',
+                        width: 50,
+                        height: 50,
+                      ),
+                      Expanded(child: Container()),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+
+                      ),
+                    ],
+                  ),
+                )
               );
             },
           );

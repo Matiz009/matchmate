@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:matchmate/home_page.dart';
+import 'package:matchmate/signup.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -12,10 +12,10 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
     super.initState();
-    Future.delayed(const Duration(seconds: 20),(){
+    Future.delayed(const Duration(seconds: 10),(){
       Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const HomePage(),
+          builder: (context) => const SignUpScreen(),
         ),
       ); // Prints after 1 second.
     });
