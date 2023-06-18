@@ -62,7 +62,7 @@ class _ChannelsState extends State<Channels> {
                     borderRadius: BorderRadius.circular(30.0),
                   ),
                   child: ListTile(
-                    title: Text('ID: ${data['channel_id']}, Name: ${data['channel_name']}',style: const TextStyle(
+                    title: Text('${data['channel_name']}',style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Times New Roman',
                       fontSize: 14,
